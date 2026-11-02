@@ -1,0 +1,53 @@
+{
+    "name": "codetime",
+    "version": "0.0.1",
+    "displayName": "CodeTime",
+    "description": "Tracks how long you code per language and project.",
+    "publisher": "local",
+    "scripts": {
+        "compile": "tsc -p ./"
+    },
+    "main": "./out/codetime.js",
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "engines": {
+        "vscode": "^1.105.0"
+    },
+    "contributes": {
+        "commands": [
+            { "command": "timeon", "title": "CodeTime: Start Tracking" },
+            { "command": "codetime.stop", "title": "CodeTime: Stop Tracking" },
+            { "command": "codetime.overview", "title": "CodeTime: Show Overview" },
+            { "command": "codetime.export", "title": "CodeTime: Export Data" },
+            { "command": "codetime.reset", "title": "CodeTime: Reset All Data" }
+        ],
+        "configuration": {
+            "title": "CodeTime",
+            "properties": {
+                "codetime.autoStart": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Start tracking automatically when VS Code starts."
+                },
+                "codetime.idleTimeoutSeconds": {
+                    "type": "number",
+                    "default": 60,
+                    "minimum": 10,
+                    "description": "Stop counting after this many seconds without typing, scrolling or cursor movement."
+                },
+                "codetime.dailyGoalMinutes": {
+                    "type": "number",
+                    "default": 0,
+                    "minimum": 0,
+                    "description": "Show a notification when you reach this many minutes of coding per day. 0 = off."
+                }
+            }
+        }
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.105.0",
+        "@types/node": "^22.0.0",
+        "typescript": "^5.6.0"
+    }
+}
